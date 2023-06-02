@@ -8,3 +8,9 @@ padding:1 rem 0;
 .rating span{
   margin:0.1rem
 }
+h1 {
+  text-transform: none;
+}
+header{
+  text-transform: none;
+}

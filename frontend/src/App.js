@@ -5,6 +5,13 @@ import HomeScreen from './screens/HomeScreen'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ProductScreen from "./screens/ProductScreen";
 import { CartScreen } from "./screens/CartScreen";
+import { Login } from "./screens/Login";
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { Register } from "./screens/Register";
+import { ShippingScreen } from "./screens/ShippingScreen";
+import PrivateRoute from "./components/PrivateRoute";
+import PaymentsScreen from "./screens/PaymentsScreen";
 const App = () => {
   return (
     <Router>
@@ -19,10 +26,34 @@ const App = () => {
               path="/cart"
               element={<CartScreen />}
             />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
+            <Route
+              path="/register"
+              element={<Register />}
+            />
+
+            <Route
+              path=''
+              element={<PrivateRoute />}
+            >
+              <Route
+                path="/shipping"
+                element={<ShippingScreen />}
+              />
+              <Route
+                path="/payment"
+                element={<PaymentsScreen />}
+              />
+
+            </Route>
           </Routes>
         </Container>
       </main>
       <Footer />
+      <ToastContainer />
     </Router>
   );
 }
