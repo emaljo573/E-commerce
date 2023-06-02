@@ -14,3 +14,7 @@ h1 {
 header{
   text-transform: none;
 }
+
+strong{
+  font-weight: bold;
+}

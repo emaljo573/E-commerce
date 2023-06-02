@@ -12,46 +12,68 @@ import { Register } from "./screens/Register";
 import { ShippingScreen } from "./screens/ShippingScreen";
 import PrivateRoute from "./components/PrivateRoute";
 import PaymentsScreen from "./screens/PaymentsScreen";
+import { PlaceOrderScreen } from "./screens/PlaceOrderScreen";
+import OrderScreen from "./screens/OrderScreen";
+import { PayPalScriptProvider } from '@paypal/react-paypal-js'
+import { ProfileScreen } from "./screens/ProfileScreen";
 const App = () => {
   return (
     <Router>
       <Header />
-      <main className="py-3">
-        <Container>
-          <Routes>
-            <Route path="/" element={<HomeScreen />} exact />
-            <Route path="/product/:id"
-              element={<ProductScreen />} />
-            <Route
-              path="/cart"
-              element={<CartScreen />}
-            />
-            <Route
-              path="/login"
-              element={<Login />}
-            />
-            <Route
-              path="/register"
-              element={<Register />}
-            />
-
-            <Route
-              path=''
-              element={<PrivateRoute />}
-            >
+      <PayPalScriptProvider deferLoading={true}>
+        <main className="py-3">
+          <Container>
+            <Routes>
+              <Route path="/" element={<HomeScreen />} exact />
+              <Route path="/product/:id"
+                element={<ProductScreen />} />
               <Route
-                path="/shipping"
-                element={<ShippingScreen />}
+                path="/cart"
+                element={<CartScreen />}
               />
               <Route
-                path="/payment"
-                element={<PaymentsScreen />}
+                path="/login"
+                element={<Login />}
+              />
+              <Route
+                path="/register"
+                element={<Register />}
               />
 
-            </Route>
-          </Routes>
-        </Container>
-      </main>
+              <Route
+                path=''
+                element={<PrivateRoute />}
+              >
+                <Route
+                  path="/shipping"
+                  element={<ShippingScreen />}
+                />
+                <Route
+                  path="/payment"
+                  element={<PaymentsScreen />}
+                />
+                <Route
+                  path="/placeorder"
+                  element={<PlaceOrderScreen />}
+                />
+                <Route
+                  path="/order/:id"
+                  element={<OrderScreen />}
+                />
+                <Route
+                  path="/order/:id"
+                  element={<OrderScreen />}
+                />
+                <Route
+                  path='/profile'
+                  element={<ProfileScreen />}
+                />
+
+              </Route>
+            </Routes>
+          </Container>
+        </main>
+      </PayPalScriptProvider>
       <Footer />
       <ToastContainer />
     </Router>
