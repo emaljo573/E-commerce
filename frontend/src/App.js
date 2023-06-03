@@ -22,97 +22,102 @@ import { ProductListScreen } from "./screens/admin/ProductListScreen";
 import ProductEditScreen from "./screens/admin/ProductEditScreen";
 import UserListScreen from "./screens/admin/UserListScreen";
 import UserEditScreen from "./screens/admin/UserEditScreen";
+import { HelmetProvider } from 'react-helmet-async'
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <PayPalScriptProvider deferLoading={true}>
-        <main className="py-3">
-          <Container>
-            <Routes>
-              <Route path="/" element={<HomeScreen />} exact />
-              <Route path="/page/:pageNumber" element={<HomeScreen />} />
-              <Route path="/product/:id"
-                element={<ProductScreen />} />
-              <Route
-                path="/cart"
-                element={<CartScreen />}
-              />
-              <Route
-                path="/login"
-                element={<Login />}
-              />
-              <Route
-                path="/register"
-                element={<Register />}
-              />
-              <Route
-                path=''
-                element={<PrivateRoute />}
-              >
+    <HelmetProvider>
+      <Router>
+        <Header />
+        <PayPalScriptProvider deferLoading={true}>
+          <main className="py-3">
+            <Container>
+              <Routes>
+                <Route path="/" element={<HomeScreen />} exact />
+                <Route path="/search/:keyword" element={<HomeScreen />} />
+                <Route path="/page/:pageNumber" element={<HomeScreen />} />
+                <Route path="/search/:keyword/page/:pageNumber" element={<HomeScreen />} />
+                <Route path="/product/:id"
+                  element={<ProductScreen />} />
                 <Route
-                  path="/shipping"
-                  element={<ShippingScreen />}
+                  path="/cart"
+                  element={<CartScreen />}
                 />
                 <Route
-                  path="/payment"
-                  element={<PaymentsScreen />}
+                  path="/login"
+                  element={<Login />}
                 />
                 <Route
-                  path="/placeorder"
-                  element={<PlaceOrderScreen />}
+                  path="/register"
+                  element={<Register />}
                 />
                 <Route
-                  path="/order/:id"
-                  element={<OrderScreen />}
-                />
-                <Route
-                  path="/order/:id"
-                  element={<OrderScreen />}
-                />
-                <Route
-                  path='/profile'
-                  element={<ProfileScreen />}
-                />
-
-              </Route>
-              <Route
-                path=''
-                element={<AdminRoute />}
-              >
-                <Route
-                  path='/admin/orderlist'
-                  element={<OrderListScreen />}
+                  path=''
+                  element={<PrivateRoute />}
                 >
+                  <Route
+                    path="/shipping"
+                    element={<ShippingScreen />}
+                  />
+                  <Route
+                    path="/payment"
+                    element={<PaymentsScreen />}
+                  />
+                  <Route
+                    path="/placeorder"
+                    element={<PlaceOrderScreen />}
+                  />
+                  <Route
+                    path="/order/:id"
+                    element={<OrderScreen />}
+                  />
+                  <Route
+                    path="/order/:id"
+                    element={<OrderScreen />}
+                  />
+                  <Route
+                    path='/profile'
+                    element={<ProfileScreen />}
+                  />
+
                 </Route>
                 <Route
-                  path='/admin/productlist'
-                  element={<ProductListScreen />}
-                ></Route>
-                 <Route
-                  path='/admin/productlist/:pageNumber'
-                  element={<ProductListScreen />}
-                ></Route>
-                <Route
-                  path='/admin/product/:id/edit'
-                  element={<ProductEditScreen />}
-                ></Route>
-                <Route
-                  path='/admin/userlist'
-                  element={<UserListScreen />}
-                ></Route>
-                <Route
-                  path='/admin/user/:id/edit'
-                  element={<UserEditScreen />}
-                ></Route>
-              </Route>
-            </Routes>
-          </Container>
-        </main>
-      </PayPalScriptProvider>
-      <Footer />
-      <ToastContainer />
-    </Router>
+                  path=''
+                  element={<AdminRoute />}
+                >
+                  <Route
+                    path='/admin/orderlist'
+                    element={<OrderListScreen />}
+                  >
+                  </Route>
+                  <Route
+                    path='/admin/productlist'
+                    element={<ProductListScreen />}
+                  ></Route>
+                  <Route
+                    path='/admin/productlist/:pageNumber'
+                    element={<ProductListScreen />}
+                  ></Route>
+                  <Route
+                    path='/admin/product/:id/edit'
+                    element={<ProductEditScreen />}
+                  ></Route>
+                  <Route
+                    path='/admin/userlist'
+                    element={<UserListScreen />}
+                  ></Route>
+                  <Route
+                    path='/admin/user/:id/edit'
+                    element={<UserEditScreen />}
+                  ></Route>
+                </Route>
+              </Routes>
+            </Container>
+          </main>
+        </PayPalScriptProvider>
+        <Footer />
+        <ToastContainer />
+      </Router>
+    </HelmetProvider>
   );
 }
 

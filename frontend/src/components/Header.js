@@ -3,22 +3,23 @@ import { Navbar, Container, Nav, Badge, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useSelector } from 'react-redux'
 import { useLogoutMutation } from '../slice/usersApiSlice'
-import {logout} from '../slice/authSlice'
+import { logout } from '../slice/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import SearchBox from './SearchBox'
 
 const Header = () => {
     const { cartItems } = useSelector(state => state.cart)
     const { userInfo } = useSelector(state => state.auth)
-    const navigate=useNavigate()
-    const dispatch=useDispatch()
-    const [logoutApiCall]=useLogoutMutation();
-    const logoutHandler = async() => {
-        try{
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const [logoutApiCall] = useLogoutMutation();
+    const logoutHandler = async () => {
+        try {
             await logoutApiCall().unwrap()
             dispatch(logout())
             navigate('/login')
-        }catch(err){
+        } catch (err) {
 
         }
     }
@@ -32,6 +33,7 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav className="ml-auto">
+                            <SearchBox />
                             <LinkContainer to="/cart">
                                 <Nav.Link ><i className='fas fa-shopping-cart'></i> Cart
                                     {
@@ -59,7 +61,7 @@ const Header = () => {
                                 </LinkContainer>)
                             }
                             {
-                                userInfo && userInfo.isAdmin && 
+                                userInfo && userInfo.isAdmin &&
                                 (
                                     <NavDropdown title='Admin' id='adminmenu'>
                                         <LinkContainer to='/admin/productlist'>

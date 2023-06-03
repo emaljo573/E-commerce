@@ -9,6 +9,7 @@ import { useGetProductDetailsQuery, useCreateReviewMutation } from '../slice/pro
 import { addToCart } from '../slice/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import Meta from '../components/Meta'
 const ProductScreen = () => {
     const { id: productId } = useParams()
     const dispatch = useDispatch()
@@ -41,7 +42,7 @@ const ProductScreen = () => {
         }
     };
 
-    
+
     return (
         <>
             <Link to={'/'} className='btn btn-light my-3'>Go Back</Link>
@@ -49,6 +50,7 @@ const ProductScreen = () => {
                 isLoading ? <Loader /> : error ? <Message variant='danger'>{error}</Message>
                     :
                     <>
+                        <Meta title={product.name} />
                         <Row>
                             <Col md={6}>
                                 <Image src={product.image} alt={product.name} fluid />
