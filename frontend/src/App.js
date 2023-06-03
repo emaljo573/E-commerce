@@ -31,6 +31,7 @@ const App = () => {
           <Container>
             <Routes>
               <Route path="/" element={<HomeScreen />} exact />
+              <Route path="/page/:pageNumber" element={<HomeScreen />} />
               <Route path="/product/:id"
                 element={<ProductScreen />} />
               <Route
@@ -86,6 +87,10 @@ const App = () => {
                 </Route>
                 <Route
                   path='/admin/productlist'
+                  element={<ProductListScreen />}
+                ></Route>
+                 <Route
+                  path='/admin/productlist/:pageNumber'
                   element={<ProductListScreen />}
                 ></Route>
                 <Route
