@@ -16,6 +16,12 @@ import { PlaceOrderScreen } from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { ProfileScreen } from "./screens/ProfileScreen";
+import AdminRoute from "./components/AdminRoute";
+import OrderListScreen from "./screens/admin/OrderListScreen";
+import { ProductListScreen } from "./screens/admin/ProductListScreen";
+import ProductEditScreen from "./screens/admin/ProductEditScreen";
+import UserListScreen from "./screens/admin/UserListScreen";
+import UserEditScreen from "./screens/admin/UserEditScreen";
 const App = () => {
   return (
     <Router>
@@ -39,7 +45,6 @@ const App = () => {
                 path="/register"
                 element={<Register />}
               />
-
               <Route
                 path=''
                 element={<PrivateRoute />}
@@ -69,6 +74,32 @@ const App = () => {
                   element={<ProfileScreen />}
                 />
 
+              </Route>
+              <Route
+                path=''
+                element={<AdminRoute />}
+              >
+                <Route
+                  path='/admin/orderlist'
+                  element={<OrderListScreen />}
+                >
+                </Route>
+                <Route
+                  path='/admin/productlist'
+                  element={<ProductListScreen />}
+                ></Route>
+                <Route
+                  path='/admin/product/:id/edit'
+                  element={<ProductEditScreen />}
+                ></Route>
+                <Route
+                  path='/admin/userlist'
+                  element={<UserListScreen />}
+                ></Route>
+                <Route
+                  path='/admin/user/:id/edit'
+                  element={<UserEditScreen />}
+                ></Route>
               </Route>
             </Routes>
           </Container>
